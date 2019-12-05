@@ -6,6 +6,8 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,12 +16,19 @@
     </head>
     <body>
         <h1>Create a Mission</h1>
-        <form>
-        Mission Title: <input type="text" name="mission">
-        Select the agent:
+        <form action="CreateMission.do" method="POST">
+            Mission Title: <input type="text" name="mission"><br>
+        Select the agent:<select name="agent">
+                <c:forEach var="agent" items="${agents}">
+                      <option  value="${agent}">${agent}</option>
+                </c:forEach>
+            </select>
         
         <h2>Select the Gadgets</h2>
-        Other Gadget: <input type="text" name="gadget">
+        <c:forEach var="gadget" items="${gadgets}">
+            <input type="checkbox" name="gadget" value="${gadget}">${gadget}<br>
+        </c:forEach>
+            Other Gadget: <input type="text" name="gadgets"><br>
         <input type="submit" formaction="CreateMission.do" formmethod="POST" value="Create Mission">
         </form>
     </body>

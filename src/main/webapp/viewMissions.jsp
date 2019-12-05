@@ -13,5 +13,7 @@
     </head>
     <body>
         <h1>Here are the missions for</h1>
+        
+        <a href="index.jsp">Back To Home Page</a>
     </body>
 </html>

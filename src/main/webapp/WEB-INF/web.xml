@@ -20,7 +20,7 @@
     <context-param>
         <param-name>agents</param-name>
         <param-value>
-            Jane Blond:Johnny English: Austin Powers
+            Jane Blond:Johnny English:Austin Powers
         </param-value>
     </context-param>
 
@@ -37,8 +37,9 @@
             Queen:Cigar
         </param-value>
     </context-param>  
-     
-    <session-config>
+    <listener>
+        <listener-class>com.mycompany.chen_ciftarslan_a3.listeners.AgentContextListener</listener-class>
+    </listener>    <session-config>
         <session-timeout>
             30
         </session-timeout>
