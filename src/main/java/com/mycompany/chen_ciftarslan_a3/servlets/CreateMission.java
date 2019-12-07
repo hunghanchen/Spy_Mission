@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.enterprise.context.SessionScoped;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,16 +31,16 @@ public class CreateMission extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-             MissioinList missioinList;
+
+            MissioinList missioinList;
 
             HttpSession session = request.getSession();
             String agent = request.getParameter("agent");
 
             if (session.getAttribute(agent) == null) {
-                  missioinList = (MissioinList) getServletContext().getAttribute(agent);
+                missioinList = (MissioinList) getServletContext().getAttribute(agent);
             } else {
-                  missioinList = (MissioinList) session.getAttribute(agent);
+                missioinList = (MissioinList) session.getAttribute(agent);
             }
 
             ArrayList<Gadget> gadgets = new ArrayList<>();
@@ -57,11 +58,13 @@ public class CreateMission extends HttpServlet {
 
             missioinList.addMission(mission);
 
-
             session.setAttribute(agent, missioinList);
 
             String test = "5";
 
+            RequestDispatcher rd = request.getRequestDispatcher("viewMissions.jsp");
+            rd.forward(request, response);
+            
             writeHeader(out);
             out.println("<h1> Here are the mission for" + agent + "</h1>");
             out.println("<h2> Mission </h2>");

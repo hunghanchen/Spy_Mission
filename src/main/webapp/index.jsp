@@ -20,7 +20,7 @@
             <input type="submit" formaction="createMission.jsp" value="Create a Mission">
             <h2>View Missions For</h2>
 
-            Select an agent: <select>
+            Select an agent: <select name="agent">
                 <c:forEach var="agent" items="${agents}">
                       <option value="${agent}">${agent}</option>
                 </c:forEach>
