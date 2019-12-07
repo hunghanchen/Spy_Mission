@@ -39,7 +39,8 @@
     </context-param>  
     <listener>
         <listener-class>com.mycompany.chen_ciftarslan_a3.listeners.AgentContextListener</listener-class>
-    </listener>    <session-config>
+    </listener>    
+    <session-config>
         <session-timeout>
             30
         </session-timeout>

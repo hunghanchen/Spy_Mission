@@ -28,7 +28,7 @@
         <c:forEach var="gadget" items="${gadgets}">
             <input type="checkbox" name="gadget" value="${gadget}">${gadget}<br>
         </c:forEach>
-            Other Gadget: <input type="text" name="gadgets"><br>
+            Other Gadget: <input type="text" name="gadget"><br>
         <input type="submit" formaction="CreateMission.do" formmethod="POST" value="Create Mission">
         </form>
     </body>

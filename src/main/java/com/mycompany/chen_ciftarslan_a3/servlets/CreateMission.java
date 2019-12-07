@@ -6,6 +6,8 @@
 package com.mycompany.chen_ciftarslan_a3.servlets;
 
 import com.mycompany.chen_ciftarslan_a3.model.Gadget;
+import com.mycompany.chen_ciftarslan_a3.model.MissioinList;
+import com.mycompany.chen_ciftarslan_a3.model.Mission;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -19,27 +21,43 @@ import javax.servlet.http.HttpServletResponse;
  * @author Nancy Chen
  */
 public class CreateMission extends HttpServlet {
-    
-    
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
             ArrayList<Gadget> gadgets = new ArrayList<>();
+//            MissioinList missioinList = new MissioinList();
+            ArrayList<MissioinList> missionLists = new ArrayList<>();
+//            missionLists.add(new MissioinList().);
+
             String[] gadget = request.getParameterValues("gadget");
-            for(int i = 0 ; i < gadget.length ; i++){
+
+            for (int i = 0; i < gadget.length; i++) {
                 gadgets.add(new Gadget(gadget[i]));
             }
-            
+
+            String[] agents = (String[]) getServletContext().getAttribute("agents");
+
+            for (int i = 0; i < agents.length; i++) {
+            }
+
+//      request.setAttribute("quoteList", getServletContext().getAttribute("bugsQuotes"));
             String missionName = request.getParameter("mission");
+            Mission mission = new Mission();
+            mission.setName(missionName);
+            mission.setGadgets(gadgets);
+
+            String agent = request.getParameter("agent");
+            MissioinList missioinList = new MissioinList();
+            missioinList.setAgent(agent);
+            missioinList.addMission(mission);
+            String test = "3";
             
-            String agent =request.getParameter("agent");
             
-            
-            
+
             writeHeader(out);
             out.println("<h1> Here are the mission for </h1>");
             out.println("<h2> Mission </h2>");
