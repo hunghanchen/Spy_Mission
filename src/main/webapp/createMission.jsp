@@ -23,6 +23,7 @@
                       <option  value="${agent}">${agent}</option>
                 </c:forEach>
             </select>
+
         
         <h2>Select the Gadgets</h2>
         <c:forEach var="gadget" items="${gadgets}">

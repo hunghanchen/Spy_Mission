@@ -11,27 +11,38 @@ import com.mycompany.chen_ciftarslan_a3.model.Mission;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.enterprise.context.SessionScoped;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Nancy Chen
  */
 public class CreateMission extends HttpServlet {
+//    MissioinList missioinList = null;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            
+             MissioinList missioinList;
+
+            HttpSession session = request.getSession();
+            String agent = request.getParameter("agent");
+
+            if (session.getAttribute(agent) == null) {
+                  missioinList = (MissioinList) getServletContext().getAttribute(agent);
+            } else {
+                  missioinList = (MissioinList) session.getAttribute(agent);
+            }
 
             ArrayList<Gadget> gadgets = new ArrayList<>();
-//            MissioinList missioinList = new MissioinList();
-            ArrayList<MissioinList> missionLists = new ArrayList<>();
-//            missionLists.add(new MissioinList().);
 
             String[] gadget = request.getParameterValues("gadget");
 
@@ -39,30 +50,23 @@ public class CreateMission extends HttpServlet {
                 gadgets.add(new Gadget(gadget[i]));
             }
 
-            String[] agents = (String[]) getServletContext().getAttribute("agents");
-
-            for (int i = 0; i < agents.length; i++) {
-            }
-
-//      request.setAttribute("quoteList", getServletContext().getAttribute("bugsQuotes"));
             String missionName = request.getParameter("mission");
             Mission mission = new Mission();
             mission.setName(missionName);
             mission.setGadgets(gadgets);
 
-            String agent = request.getParameter("agent");
-            MissioinList missioinList = new MissioinList();
-            missioinList.setAgent(agent);
             missioinList.addMission(mission);
-            String test = "3";
-            
-            
+
+
+            session.setAttribute(agent, missioinList);
+
+            String test = "5";
 
             writeHeader(out);
-            out.println("<h1> Here are the mission for </h1>");
+            out.println("<h1> Here are the mission for" + agent + "</h1>");
             out.println("<h2> Mission </h2>");
             out.println("<form>");
-            out.println("<input type='submit' value='Delete Missions for Jane Blond'>");
+            out.println("<input type='submit' value='Delete Missions for ??????'>");
             out.println("</form>");
             writeFooter(out);
         } catch (Exception ex) {
@@ -83,7 +87,7 @@ public class CreateMission extends HttpServlet {
     }
 
     private void writeFooter(final PrintWriter out) {
-        out.println("<a href=\"index.html\">Back to Home Page</a>\n");
+        out.println("<a href=\"index.jsp\">Back to Home Page</a>\n");
         out.println("</body>");
         out.println("</html>");
     }
