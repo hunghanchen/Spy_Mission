@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.chen_ciftarslan_a3.servlets;
 
 import com.mycompany.chen_ciftarslan_a3.model.Gadget;
@@ -20,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Hung-Han,Chen, Ali Cemilcan Ciftarslan
+ * @author Hung-Han,Chen & Ali Cemilcan Ciftarslan
  */
 public class CreateMission extends HttpServlet {
 
@@ -28,27 +23,27 @@ public class CreateMission extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
 
             HttpSession session = request.getSession();
             session.setAttribute("message", null);
-            String missionName = request.getParameter("mission");
-            
+            String missionName = request.getParameter("mission"); //Get the mission name from index
+
             //If user did not type mission or type empty space it will go index.jsp and show alert
             if (missionName.trim().equals("")) {
-                
+
                 String missionEmpty = "<h1 style=\"color:red;\">Mission cannot be blank</h1>";
                 session.setAttribute("message", missionEmpty);
                 RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
                 rd.forward(request, response);
-                
+
             } else {
 
-                String agent = request.getParameter("agent");
+                String agent = request.getParameter("agent");//Get the agent from jsp
                 session.setAttribute("agentName", agent);
 
                 ArrayList<Gadget> gadgets = new ArrayList<>();
-
+                //Gadget is in checkbox so we are keeping all gadgets
                 String[] gadget = request.getParameterValues("gadget");
 
                 for (int i = 0; i < gadget.length; i++) {
@@ -56,7 +51,7 @@ public class CreateMission extends HttpServlet {
                         gadgets.add(new Gadget(gadget[i]));
                     }
                 }
-
+                // Creating an instance of Mission
                 Mission mission = new Mission();
                 mission.setName(missionName);
                 mission.setGadgets(gadgets);
@@ -70,7 +65,8 @@ public class CreateMission extends HttpServlet {
                 }
 
                 missioinList.addMission(mission);
-
+                
+                // We set as an agent since we want to keep different agent and their missions we just assign.
                 session.setAttribute(agent, missioinList);
 
                 RequestDispatcher rd = request.getRequestDispatcher("viewMissions.jsp");

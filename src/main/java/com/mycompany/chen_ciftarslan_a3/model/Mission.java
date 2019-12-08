@@ -7,7 +7,8 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Nancy Chen
+ *@author Hung-Han,Chen & Ali Cemilcan Ciftarslan
+ * Using the Gadget ArrayList to keep all gadgets
  */
 public class Mission implements Serializable{
     

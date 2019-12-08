@@ -8,8 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 
 /**
- *
- * @author Nancy Chen
+ *@author Hung-Han,Chen & Ali Cemilcan Ciftarslan
  */
 public class MyWrapper extends HttpServletResponseWrapper{
     CharArrayWriter caw = new CharArrayWriter();

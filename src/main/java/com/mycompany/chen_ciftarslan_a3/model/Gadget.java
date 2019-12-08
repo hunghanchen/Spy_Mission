@@ -5,8 +5,8 @@ package com.mycompany.chen_ciftarslan_a3.model;
 import java.io.Serializable;
 
 /**
- *
- * @author Nancy Chen
+ * @author Hung-Han,Chen & Ali Cemilcan Ciftarslan
+ * Gadget Class with getter & setter for name attribute
  */
 public class Gadget implements Serializable{
     

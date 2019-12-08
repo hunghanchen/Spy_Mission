@@ -1,6 +1,6 @@
 <%-- 
     Document   : createMission
-    Created on : 30-Nov-2019, 2:33:37 PM
+    Created on : 06-Dec-2019
     Author     : Hung-Han,Chen, Ali Cemilcan Ciftarslan
 --%>
 
@@ -15,6 +15,9 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <!--
+        Creating page that shows agent list with using forEach retirieve form AgentContextListener
+        -->
         <h1>Create a Mission</h1>
         <form action="CreateMission.do" method="POST">
             Mission Title: <input type="text" name="mission"><br>
@@ -24,7 +27,11 @@
                 </c:forEach>
             </select>
 
-
+            <!--
+            Using checkbox to allow multiple gadgets, using forEach to display and
+            retrieve from AgentContextListener.
+            -->
+            
             <h2>Select the Gadgets</h2>
             <c:forEach var="gadget" items="${gadgets}">
                 <input type="checkbox" name="gadget" value="${gadget}">${gadget}<br>

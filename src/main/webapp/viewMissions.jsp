@@ -1,7 +1,8 @@
 <%-- 
-    Document   : viewMissions
-    Created on : 30-Nov-2019, 2:34:47 PM
-    Author     : Nancy Chen
+    Document   : viewMission
+    Created on : 6-Dec-2019, 
+    Author     : Hung-Han,Chen, Ali Cemilcan Ciftarslan
+    Heroku     :https://spy-mission-chen-ciftarslan-a3.herokuapp.com/
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,15 +15,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <!--{param.agents}, {sessionScope[param.agent].agent 
-        put together because either from index to here or from
-        createMission servlet will only assign one of each value-->
+      <!-- GET Agent from index.jsp -->
         <h1>Here are the missions for ${param.agent}</h1>
         <!--        if the agent has no mission will show "There is no missions"-->
         <c:if test="${ empty sessionScope[param.agent].missions  }">
             <h2> There is no missions</h2>
         </c:if> 
 
+           <!--Get the agent`s mission and show it on the list !-->
         <c:forEach var="mission" varStatus="counter" items="${sessionScope[param.agent].missions}">
             <h2> Mission ${counter.count} : ${mission.name}</h2>
             Gadgets:
@@ -34,6 +34,7 @@
 
         </c:forEach>   
 
+            <!-- If agent is not empty show to delete option !-->
         <c:if test="${! empty sessionScope[param.agent].missions}">
             <form action="DeleteMission.do" method="POST" >
                 <input type='submit' value='Delete Missions for  ${sessionScope[param.agent].agent}'>

@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- *
- * @author Nancy Chen
+ @author Hung-Han,Chen & Ali Cemilcan Ciftarslan
+ * We are using ArrayList to keep missions.
  */
 public class MissioinList implements Serializable {
 

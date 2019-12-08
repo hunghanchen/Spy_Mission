@@ -15,7 +15,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <!--get from the DeleteMission servlet message-->
+        <!--If message is not null,show the DeleteMission servlet message-->
         <c:if test="${!empty message}">
             <h2>${message}</h2>
         </c:if> 
@@ -27,7 +27,7 @@
             <input type="submit" formaction="createMission.jsp" value="Create a Mission">
             <h2>View Missions For</h2>
 
-            <!--get from the AgentContextListner attribute message-->
+            <!--get Gent List from the AgentContextListner attribute message-->
             Select an agent: 
             <select name="agent">
                 <c:forEach var="agents" items="${agents}">
