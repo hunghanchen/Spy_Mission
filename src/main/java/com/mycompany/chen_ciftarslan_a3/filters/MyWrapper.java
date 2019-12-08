@@ -1,5 +1,3 @@
-
-
 package com.mycompany.chen_ciftarslan_a3.filters;
 
 import java.io.CharArrayWriter;
@@ -8,18 +6,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 
 /**
- *@author Hung-Han,Chen & Ali Cemilcan Ciftarslan
+ * @author Hung-Han,Chen & Ali Cemilcan Ciftarslan
  */
-public class MyWrapper extends HttpServletResponseWrapper{
+public class MyWrapper extends HttpServletResponseWrapper {
+
     CharArrayWriter caw = new CharArrayWriter();
     PrintWriter writer = new PrintWriter(caw);
 
     public MyWrapper(HttpServletResponse response) {
         super(response);
     }
-    
+
     @Override
-    public PrintWriter getWriter()  {
+    public PrintWriter getWriter() {
         return writer;
     }
 

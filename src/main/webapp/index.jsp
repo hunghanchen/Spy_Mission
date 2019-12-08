@@ -19,7 +19,7 @@
         <c:if test="${!empty message}">
             <h2>${message}</h2>
         </c:if> 
- 
+
 
         <h1>Our Super Cool Spy App</h1>
         <h2>Create a Mission</h2>

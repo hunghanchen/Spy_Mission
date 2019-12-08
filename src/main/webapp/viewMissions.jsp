@@ -15,14 +15,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-      <!-- GET Agent from index.jsp -->
+        <!-- GET Agent from index.jsp -->
         <h1>Here are the missions for ${param.agent}</h1>
         <!--        if the agent has no mission will show "There is no missions"-->
         <c:if test="${ empty sessionScope[param.agent].missions  }">
             <h2> There is no missions</h2>
         </c:if> 
 
-           <!--Get the agent`s mission and show it on the list !-->
+        <!--Get the agent`s mission and show it on the list !-->
         <c:forEach var="mission" varStatus="counter" items="${sessionScope[param.agent].missions}">
             <h2> Mission ${counter.count} : ${mission.name}</h2>
             Gadgets:
@@ -34,7 +34,7 @@
 
         </c:forEach>   
 
-            <!-- If agent is not empty show to delete option !-->
+        <!-- If agent is not empty show to delete option !-->
         <c:if test="${! empty sessionScope[param.agent].missions}">
             <form action="DeleteMission.do" method="POST" >
                 <input type='submit' value='Delete Missions for  ${sessionScope[param.agent].agent}'>

@@ -25,7 +25,7 @@ public class DeleteMission extends HttpServlet {
 
         String agent = (String) session.getAttribute("agentName");
         //Delete each mission 
-        session.setAttribute(agent, new MissioinList(agent, new ArrayList<Mission>()));
+        session.removeAttribute(agent);
         
         String deleteMessage = "<h1 style=\"color:red;\">Missions Deleted for " + agent + "</h1>";
         session.setAttribute("message", deleteMessage);

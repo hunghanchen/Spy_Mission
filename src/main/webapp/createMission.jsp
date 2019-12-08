@@ -31,7 +31,7 @@
             Using checkbox to allow multiple gadgets, using forEach to display and
             retrieve from AgentContextListener.
             -->
-            
+
             <h2>Select the Gadgets</h2>
             <c:forEach var="gadget" items="${gadgets}">
                 <input type="checkbox" name="gadget" value="${gadget}">${gadget}<br>

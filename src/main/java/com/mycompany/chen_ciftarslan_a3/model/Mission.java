@@ -1,5 +1,3 @@
-
-
 package com.mycompany.chen_ciftarslan_a3.model;
 
 import java.io.Serializable;
@@ -7,11 +5,11 @@ import java.util.ArrayList;
 
 /**
  *
- *@author Hung-Han,Chen & Ali Cemilcan Ciftarslan
- * Using the Gadget ArrayList to keep all gadgets
+ * @author Hung-Han,Chen & Ali Cemilcan Ciftarslan Using the Gadget ArrayList to
+ * keep all gadgets
  */
-public class Mission implements Serializable{
-    
+public class Mission implements Serializable {
+
     private String name;
     private ArrayList<Gadget> gadgets;
 
@@ -38,9 +36,5 @@ public class Mission implements Serializable{
     public void setGadgets(ArrayList<Gadget> gadgets) {
         this.gadgets = gadgets;
     }
-    
-    
-    
-    
 
 }

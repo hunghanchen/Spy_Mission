@@ -11,7 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *@author Hung-Han,Chen & Ali Cemilcan Ciftarslan
+ * @author Hung-Han,Chen & Ali Cemilcan Ciftarslan
  */
 public class CensorFilter implements Filter {
 
@@ -28,15 +28,15 @@ public class CensorFilter implements Filter {
         MyWrapper wrapper = new MyWrapper((HttpServletResponse) response);
         chain.doFilter(request, wrapper);
 
-            //Getting the gadgets from web.xml with ServletContext().
+        //Getting the gadgets from web.xml with ServletContext().
         String[] filterwords = (String[]) request.getServletContext().getAttribute("filtereWords");
 
         String fromJsp = wrapper.toString();
 
-        String output = fromJsp.replace("","");
+        String output = fromJsp.replace("", "");
 
         // We wont shot the specific gadgets so we use loop to replace all
-        for(String filters : filterwords){
+        for (String filters : filterwords) {
             output = output.replace(filters, "***");
         }
 

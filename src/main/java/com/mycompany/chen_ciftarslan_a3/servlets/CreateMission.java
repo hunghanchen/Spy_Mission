@@ -23,7 +23,7 @@ public class CreateMission extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
 
             HttpSession session = request.getSession();
             session.setAttribute("message", null);
@@ -65,7 +65,7 @@ public class CreateMission extends HttpServlet {
                 }
 
                 missioinList.addMission(mission);
-                
+
                 // We set as an agent since we want to keep different agent and their missions we just assign.
                 session.setAttribute(agent, missioinList);
 
