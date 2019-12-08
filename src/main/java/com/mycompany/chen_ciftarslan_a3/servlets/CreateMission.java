@@ -20,10 +20,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Nancy Chen
+ * @author Hung-Han,Chen, Ali Cemilcan Ciftarslan
  */
 public class CreateMission extends HttpServlet {
-//    MissioinList missioinList = null;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -31,36 +30,52 @@ public class CreateMission extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            MissioinList missioinList;
-
             HttpSession session = request.getSession();
-            String agent = request.getParameter("agent");
-            session.setAttribute("agentName", agent);
-
-            missioinList = (MissioinList) getServletContext().getAttribute(agent);
-
-            ArrayList<Gadget> gadgets = new ArrayList<>();
-
-            String[] gadget = request.getParameterValues("gadget");
-
-            for (int i = 0; i < gadget.length; i++) {
-                gadgets.add(new Gadget(gadget[i]));
-            }
-
+            session.setAttribute("message", null);
             String missionName = request.getParameter("mission");
-            Mission mission = new Mission();
-            mission.setName(missionName);
-            mission.setGadgets(gadgets);
+            
+            //If user did not type mission or type empty space it will go index.jsp and show alert
+            if (missionName.trim().equals("")) {
+                
+                String missionEmpty = "<h1 style=\"color:red;\">Mission cannot be blank</h1>";
+                session.setAttribute("message", missionEmpty);
+                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                rd.forward(request, response);
+                
+            } else {
 
-            missioinList.addMission(mission);
+                String agent = request.getParameter("agent");
+                session.setAttribute("agentName", agent);
 
-            session.setAttribute(agent, missioinList);
+                ArrayList<Gadget> gadgets = new ArrayList<>();
 
-            String test = "5";
-            session.setAttribute("deleteMessage", null);
+                String[] gadget = request.getParameterValues("gadget");
 
-            RequestDispatcher rd = request.getRequestDispatcher("viewMissions.jsp");
-            rd.forward(request, response);
+                for (int i = 0; i < gadget.length; i++) {
+                    if (!gadget[i].equals("")) { //When user did not enter in the gadget box will not add empty
+                        gadgets.add(new Gadget(gadget[i]));
+                    }
+                }
+
+                Mission mission = new Mission();
+                mission.setName(missionName);
+                mission.setGadgets(gadgets);
+
+                MissioinList missioinList = (MissioinList) session.getAttribute(agent);
+
+                //If missioinList is null means we did not assign one at all
+                if (missioinList == null) {
+                    missioinList = new MissioinList();
+                    missioinList.setAgent(agent);
+                }
+
+                missioinList.addMission(mission);
+
+                session.setAttribute(agent, missioinList);
+
+                RequestDispatcher rd = request.getRequestDispatcher("viewMissions.jsp");
+                rd.forward(request, response);
+            }
 
         } catch (Exception ex) {
             System.out.println(ex.toString());

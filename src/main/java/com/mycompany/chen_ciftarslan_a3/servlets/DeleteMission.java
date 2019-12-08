@@ -25,14 +25,15 @@ public class DeleteMission extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         HttpSession session = request.getSession();
+
         String agent = (String) session.getAttribute("agentName");
-
-
-        getServletContext().setAttribute(agent, new MissioinList(agent,new ArrayList<Mission>()));
+        //Delete each mission 
+        session.setAttribute(agent, new MissioinList(agent, new ArrayList<Mission>()));
         
         String deleteMessage = "<h1 style=\"color:red;\">Missions Deleted for " + agent + "</h1>";
-        session.setAttribute("deleteMessage", deleteMessage);
+        session.setAttribute("message", deleteMessage);
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         rd.forward(request, response);
 

@@ -14,7 +14,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Here are the missions for ${sessionScope[param.agent].agent}</h1>
+        <!--{param.agents}, {sessionScope[param.agent].agent 
+        put together because either from index to here or from
+        createMission servlet will only assign one of each value-->
+        <h1>Here are the missions for ${param.agent}</h1>
+        <!--        if the agent has no mission will show "There is no missions"-->
+        <c:if test="${ empty sessionScope[param.agent].missions  }">
+            <h2> There is no missions</h2>
+        </c:if> 
 
         <c:forEach var="mission" varStatus="counter" items="${sessionScope[param.agent].missions}">
             <h2> Mission ${counter.count} : ${mission.name}</h2>
@@ -22,13 +29,19 @@
             <ul>
                 <c:forEach var="gadjet" items="${mission.gadgets}">
                     <li>${gadjet.name}</li>
-                </c:forEach>               
+                    </c:forEach>               
             </ul>
 
-        </c:forEach>             
+        </c:forEach>   
+
+        <c:if test="${! empty sessionScope[param.agent].missions}">
             <form action="DeleteMission.do" method="POST" >
-            <input type='submit' value='Delete Missions for  ${sessionScope[param.agent].agent}'>
-        </form>        
+                <input type='submit' value='Delete Missions for  ${sessionScope[param.agent].agent}'>
+            </form>  
+        </c:if> 
+        <br><br>
+
+
         <a href="index.jsp">Back To Home Page</a>
     </body>
 </html>
