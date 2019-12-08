@@ -7,17 +7,17 @@ import java.util.ArrayList;
  * @author Hung-Han,Chen & Ali Cemilcan Ciftarslan We are using ArrayList to
  * keep missions.
  */
-public class MissioinList implements Serializable {
+public class MissionList implements Serializable {
 
     private String agent;
     private ArrayList<Mission> missions;
 
-    public MissioinList() {
+    public MissionList() {
         this.agent = "";
         this.missions = new ArrayList<>();
     }
 
-    public MissioinList(String agent, ArrayList<Mission> missions) {
+    public MissionList(String agent, ArrayList<Mission> missions) {
         this.agent = agent;
         this.missions = new ArrayList<>();
     }

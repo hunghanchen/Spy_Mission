@@ -1,7 +1,7 @@
 
 package com.mycompany.chen_ciftarslan_a3.servlets;
 
-import com.mycompany.chen_ciftarslan_a3.model.MissioinList;
+import com.mycompany.chen_ciftarslan_a3.model.MissionList;
 import com.mycompany.chen_ciftarslan_a3.model.Mission;
 import java.io.IOException;
 import java.util.ArrayList;

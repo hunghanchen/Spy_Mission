@@ -1,7 +1,7 @@
 package com.mycompany.chen_ciftarslan_a3.servlets;
 
 import com.mycompany.chen_ciftarslan_a3.model.Gadget;
-import com.mycompany.chen_ciftarslan_a3.model.MissioinList;
+import com.mycompany.chen_ciftarslan_a3.model.MissionList;
 import com.mycompany.chen_ciftarslan_a3.model.Mission;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -56,21 +56,22 @@ public class CreateMission extends HttpServlet {
                 mission.setName(missionName);
                 mission.setGadgets(gadgets);
 
-                MissioinList missioinList = (MissioinList) session.getAttribute(agent);
+                MissionList missionList = (MissionList) session.getAttribute(agent);
 
-                //If missioinList is null means we did not assign one at all
-                if (missioinList == null) {
-                    missioinList = new MissioinList();
-                    missioinList.setAgent(agent);
+                //If missionList is null means we did not assign one at all
+                if (missionList == null) {
+                    missionList = new MissionList();
+                    missionList.setAgent(agent);
                 }
 
-                missioinList.addMission(mission);
+                missionList.addMission(mission);
 
                 // We set as an agent since we want to keep different agent and their missions we just assign.
-                session.setAttribute(agent, missioinList);
+                session.setAttribute(agent, missionList);
 
                 RequestDispatcher rd = request.getRequestDispatcher("viewMissions.jsp");
                 rd.forward(request, response);
+
             }
 
         } catch (Exception ex) {
