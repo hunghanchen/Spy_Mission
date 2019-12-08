@@ -36,12 +36,9 @@ public class CreateMission extends HttpServlet {
 
             HttpSession session = request.getSession();
             String agent = request.getParameter("agent");
+            session.setAttribute("agentName", agent);
 
-            if (session.getAttribute(agent) == null) {
-                missioinList = (MissioinList) getServletContext().getAttribute(agent);
-            } else {
-                missioinList = (MissioinList) session.getAttribute(agent);
-            }
+            missioinList = (MissioinList) getServletContext().getAttribute(agent);
 
             ArrayList<Gadget> gadgets = new ArrayList<>();
 
@@ -61,38 +58,16 @@ public class CreateMission extends HttpServlet {
             session.setAttribute(agent, missioinList);
 
             String test = "5";
+            session.setAttribute("deleteMessage", null);
 
             RequestDispatcher rd = request.getRequestDispatcher("viewMissions.jsp");
             rd.forward(request, response);
-            
-            writeHeader(out);
-            out.println("<h1> Here are the mission for" + agent + "</h1>");
-            out.println("<h2> Mission </h2>");
-            out.println("<form>");
-            out.println("<input type='submit' value='Delete Missions for ??????'>");
-            out.println("</form>");
-            writeFooter(out);
+
         } catch (Exception ex) {
             System.out.println(ex.toString());
 
         }
 
-    }
-
-    private void writeHeader(final PrintWriter out) {
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>Create mission</title>");
-        out.println("</head>");
-        out.println("<body>");
-
-    }
-
-    private void writeFooter(final PrintWriter out) {
-        out.println("<a href=\"index.jsp\">Back to Home Page</a>\n");
-        out.println("</body>");
-        out.println("</html>");
     }
 
     /**

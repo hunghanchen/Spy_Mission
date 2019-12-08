@@ -26,7 +26,7 @@
             </ul>
 
         </c:forEach>             
-        <form>
+            <form action="DeleteMission.do" method="POST" >
             <input type='submit' value='Delete Missions for  ${sessionScope[param.agent].agent}'>
         </form>        
         <a href="index.jsp">Back To Home Page</a>

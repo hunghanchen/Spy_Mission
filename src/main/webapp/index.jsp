@@ -14,6 +14,11 @@
         <title>JSP Page</title>
     </head>
     <body>
+
+        <c:if test="${!empty deleteMessage}">
+            <h2>${deleteMessage}</h2>
+        </c:if> 
+
         <h1>Our Super Cool Spy App</h1>
         <h2>Create a Mission</h2>
         <form>
@@ -22,7 +27,7 @@
 
             Select an agent: <select name="agent">
                 <c:forEach var="agent" items="${agents}">
-                      <option value="${agent}">${agent}</option>
+                    <option value="${agent}">${agent}</option>
                 </c:forEach>
             </select>
             <input type="submit" formaction="viewMissions.jsp" value="Go">
