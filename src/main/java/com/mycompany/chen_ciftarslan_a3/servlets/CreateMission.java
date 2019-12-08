@@ -11,7 +11,6 @@ import com.mycompany.chen_ciftarslan_a3.model.Mission;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import javax.enterprise.context.SessionScoped;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

@@ -15,18 +15,20 @@ public class AgentContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         String agents = sce.getServletContext().getInitParameter("agents");
         String gadgets = sce.getServletContext().getInitParameter("gadget");
+        String filtereWords = sce.getServletContext().getInitParameter("filtereWords");
         String[] agent = agents.split(":");
         String[] gadget = gadgets.split(":");
-        sce.getServletContext().setAttribute("agents", agent);
+        String[] filtereWord = filtereWords.split(":");
 
+        sce.getServletContext().setAttribute("agents", agent);
+        sce.getServletContext().setAttribute("gadgets", gadget);
+        sce.getServletContext().setAttribute("filtereWords", filtereWord);
 
         for (int i = 0; i < agent.length; i++) {
             MissioinList missionList = new MissioinList();
             missionList.setAgent(agent[i]);
             sce.getServletContext().setAttribute(agent[i], missionList);
         }
-
-        sce.getServletContext().setAttribute("gadgets", gadget);
 
     }
 
