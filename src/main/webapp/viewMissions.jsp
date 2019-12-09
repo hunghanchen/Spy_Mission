@@ -27,6 +27,9 @@
             <h2> Mission ${counter.count} : ${mission.name}</h2>
             Gadgets:
             <ul>
+                <c:if test="${ empty mission.gadgets}">
+                    <p>There is no gadget assigned </p>
+                </c:if>
                 <c:forEach var="gadjet" items="${mission.gadgets}">
                     <li>${gadjet.name}</li>
                     </c:forEach>               
